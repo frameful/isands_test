@@ -7,6 +7,11 @@ import { useToast } from "~/components/ui/toast";
 const { toast } = useToast();
 
 const loading = ref(false);
+const componentKey =  ref(0)
+
+function forceRerender () {
+  componentKey.value += 1;
+}
 
 async function onFileChanged($event: Event) {
   const target = $event.target as HTMLInputElement;
@@ -16,7 +21,7 @@ async function onFileChanged($event: Event) {
     formData.append("file", file);
     try {
       loading.value = true;
-      const res = await $fetch("http://localhost:8081/estore/api/upload/upload",
+      const res = await $fetch("http://localhost:8081/estore/api/upload",
           {
             method: "POST",
             body: formData,
@@ -24,6 +29,7 @@ async function onFileChanged($event: Event) {
       toast({
         description: "Файл УСПЕШНО ЗАГРУЖЕН"
       });
+      forceRerender();
     } catch (e: any) {
       toast({
         title: "Ошибка",
@@ -40,7 +46,7 @@ const tab = ref('employee');
 </script>
 
 <template>
-  <div class="mx-auto flex items-center justify-center py-10 flex-col space-y-4 max-w-[1200px]">
+  <div class="mx-auto flex items-center justify-center py-10 flex-col space-y-4 max-w-[1200px]" :key="componentKey">
     <div class="flex items-center justify-center space-x-2">
         <label for="csv">Загрузить данные из csv:</label>
         <input type="file" id="csv" name="csv" accept=".zip" @change="onFileChanged($event)" />

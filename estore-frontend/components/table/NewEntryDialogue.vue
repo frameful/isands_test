@@ -56,7 +56,6 @@ for (const key of Object.keys(props.keySet)) {
 watchEffect(() => {
   Object.keys(props.keySet).forEach((key) => {
     inputState[key].valid = props.keySet[key].regex.test(inputState[key].value);
-    console.log(inputState[key], ": ", props.keySet[key].regex.test(inputState[key].value), ": ", props.keySet[key])
   });
 });
 
@@ -78,7 +77,6 @@ async function handleClick() {
     body[key] = inputState[key].value;
   })
 
-  console.log(body)
   try {
     const response = await axios.post('http://localhost:8081' + props.endpoint, body);
     toast({
