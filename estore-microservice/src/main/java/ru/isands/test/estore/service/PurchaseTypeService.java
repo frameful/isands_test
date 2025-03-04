@@ -1,6 +1,8 @@
 package ru.isands.test.estore.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import ru.isands.test.estore.exception.NotFoundException;
 import ru.isands.test.estore.mapper.PurchaseTypeMapper;
@@ -9,7 +11,7 @@ import ru.isands.test.estore.model.dto.PurchaseTypeDto;
 import ru.isands.test.estore.model.dto.input.PurchaseTypeInputDto;
 import ru.isands.test.estore.repository.PurchaseTypeRepository;
 
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,10 +25,10 @@ public class PurchaseTypeService {
     }
 
 
-    public Set<PurchaseTypeDto> getPurchaseTypes() {
-        return purchaseTypeRepository.findAll().stream()
+    public List<PurchaseTypeDto> getPurchaseTypes(Integer page, Integer pageSize) {
+        return purchaseTypeRepository.findAll(PageRequest.of(page, pageSize, Sort.by("id").ascending())).stream()
                 .map(PurchaseTypeMapper::toDto)
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
     }
 
     public PurchaseTypeDto getPurchaseTypeById(Long purchaseTypeId) {

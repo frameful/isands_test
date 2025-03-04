@@ -1,6 +1,8 @@
 package ru.isands.test.estore.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import ru.isands.test.estore.exception.NotFoundException;
 import ru.isands.test.estore.mapper.ElectroItemMapper;
@@ -11,7 +13,7 @@ import ru.isands.test.estore.model.dto.input.ElectroItemInputDto;
 import ru.isands.test.estore.model.dto.input.ElectroTypeInputDto;
 import ru.isands.test.estore.repository.ElectroTypeRepository;
 
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,10 +26,11 @@ public class ElectroTypeService {
         this.electroTypeRepository = electroTypeRepository;
     }
 
-    public Set<ElectroTypeDto> getElectroTypes() {
-        return electroTypeRepository.findAll().stream()
+    public List<ElectroTypeDto> getElectroTypes(Integer page, Integer pageSize) {
+        return electroTypeRepository.findAll(PageRequest.of(page, pageSize, Sort.by("id").ascending()))
+                .stream()
                 .map(ElectroTypeMapper::toDto)
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
     }
 
     public ElectroTypeDto getElectroTypeById(Long electroTypeId) {

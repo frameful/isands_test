@@ -1,19 +1,18 @@
 package ru.isands.test.estore.repository;
 
-import java.util.Collection;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import ru.isands.test.estore.model.Employee;
 
 import javax.transaction.Transactional;
 
-public interface EmployeeRepository extends JpaRepository<Employee, Long> {
+public interface EmployeeRepository extends PagingAndSortingRepository<Employee, Long> {
 
     @Modifying
     @Transactional
@@ -22,8 +21,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
                         @Param("firstname") String firstname, @Param("patronymic") String patronymic,
                         @Param("birthDate") Date birthDate, @Param("positionId") Long positionId,
                         @Param("shopId") Long shopId, @Param("gender") Boolean gender);
-
-    Set<Employee> findByShop_Id(Long shopId);
+    List<Employee> findByShop_Id(Long shopId);
 
     @Modifying
     @Transactional

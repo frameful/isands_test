@@ -13,7 +13,7 @@ import ru.isands.test.estore.model.dto.EmployeeDto;
 import ru.isands.test.estore.model.dto.input.EmployeeInputDto;
 import ru.isands.test.estore.service.EmployeeService;
 
-import java.util.Set;
+import java.util.List;
 
 @RestController
 @Tag(name = "Employee", description = "Сервис для выполнения операций над сотрудниками магазина")
@@ -29,8 +29,10 @@ public class EmployeeController {
 
 	@Operation(summary = "Получить список всех сотрудников")
 	@GetMapping
-	public ResponseEntity<Set<EmployeeDto>> getEmployees() {
-		return ResponseEntity.ok(employeeService.getEmployees());
+	public ResponseEntity<List<EmployeeDto>> getEmployees(@RequestParam(name = "page") Integer page,
+														  @RequestParam(name = "pageSize") Integer pageSize)
+	{
+		return ResponseEntity.ok(employeeService.getEmployees(page, pageSize));
 	}
 
 	@Operation(summary = "Получить сотрудника по ID.")

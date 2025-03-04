@@ -1,6 +1,8 @@
 package ru.isands.test.estore.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import ru.isands.test.estore.exception.NotFoundException;
@@ -17,8 +19,7 @@ import ru.isands.test.estore.repository.ElectroShopRepository;
 import ru.isands.test.estore.repository.EmployeeRepository;
 import ru.isands.test.estore.repository.ShopRepository;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,10 +35,10 @@ public class ShopService {
     }
 
 
-    public Set<ShopDto> getShops() {
-        return shopRepository.findAll().stream()
+    public List<ShopDto> getShops(Integer page, Integer pageSize) {
+        return shopRepository.findAll(PageRequest.of(page, pageSize, Sort.by("id").ascending())).stream()
                 .map(ShopMapper::toDto)
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
     }
 
     public ShopDto getShopById(Long shopId) {
@@ -50,7 +51,8 @@ public class ShopService {
     }
 
     public ShopDto updateShop(Long shopId, ShopInputDto shopInputDto) {
-        return null;
+        Shop shop = shopRepository.findById(shopId).orElseThrow(() -> new NotFoundException("Магазин не найден"));
+        return ShopMapper.toDto(shopRepository.save(ShopMapper.updateModel(shop, shopInputDto)));
     }
 
     public void insertElectroShop(ElectroShopPK electroShopPK, Long count) {

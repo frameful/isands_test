@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import ru.isands.test.estore.model.dto.ShopDto;
 
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 @Data
 @NoArgsConstructor

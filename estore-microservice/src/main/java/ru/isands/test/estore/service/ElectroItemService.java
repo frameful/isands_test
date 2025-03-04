@@ -1,6 +1,8 @@
 package ru.isands.test.estore.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import ru.isands.test.estore.exception.AlreadyExistsException;
 import ru.isands.test.estore.exception.NotFoundException;
@@ -41,10 +43,10 @@ public class ElectroItemService {
         this.shopRepository = shopRepository;
     }
 
-    public Set<ElectroItemDto> getElectroItems() {
-        return electroItemRepository.findAll().stream()
+    public List<ElectroItemDto> getElectroItems(Integer page, Integer pageSize) {
+        return electroItemRepository.findAll(PageRequest.of(page, pageSize, Sort.by("id").ascending())).stream()
                 .map(ElectroItemMapper::toDto)
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
     }
 
     public ElectroItemDto getElectroItemById(Long electroItemId) {
@@ -58,7 +60,7 @@ public class ElectroItemService {
 
         System.out.println(electroItem.getShops());
 
-        Set<ElectroShop> electroShops = electroShopRepository.findByElectroItem(electroItem);
+        List<ElectroShop> electroShops = electroShopRepository.findByElectroItem(electroItem);
 
         Map<ShopOutputDto, Long> electroItemCountByShop = electroShops.stream()
                 .collect(Collectors.toMap(

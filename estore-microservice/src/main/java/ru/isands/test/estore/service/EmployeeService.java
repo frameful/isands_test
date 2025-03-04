@@ -1,6 +1,8 @@
 package ru.isands.test.estore.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import ru.isands.test.estore.exception.NotFoundException;
@@ -19,8 +21,7 @@ import ru.isands.test.estore.repository.ShopRepository;
 
 import javax.transaction.Transactional;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -44,10 +45,10 @@ public class EmployeeService {
         this.electroEmployeeRepository = electroEmployeeRepository;
     }
 
-    public Set<EmployeeDto> getEmployees() {
-        return employeeRepository.findAll().stream()
+    public List<EmployeeDto> getEmployees(Integer page, Integer pageSize) {
+        return employeeRepository.findAll(PageRequest.of(page, pageSize, Sort.by("id").ascending())).stream()
                 .map(EmployeeMapper::toDto)
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
     }
 
     public EmployeeDto getEmployeeById(Long employeeId) {

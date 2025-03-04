@@ -19,7 +19,10 @@ public class Purchase implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "purchase_counter")
-	@TableGenerator(name = "purchase_counter", pkColumnName = "name", pkColumnValue = "ru.isands.test.estore.entity.Purchase", table = "counter", valueColumnName = "currentid", allocationSize = 1)
+	@TableGenerator(name = "purchase_counter", pkColumnName = "name",
+			pkColumnValue = "ru.isands.test.estore.entity.Purchase",
+			table = "counter", valueColumnName = "currentid",
+			allocationSize = 1)
 	@Column(name = "id", unique = true, nullable = false)
 	Long id;
 

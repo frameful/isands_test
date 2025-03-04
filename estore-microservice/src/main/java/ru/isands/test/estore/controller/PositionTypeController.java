@@ -7,7 +7,7 @@ import ru.isands.test.estore.model.dto.PositionTypeDto;
 import ru.isands.test.estore.model.dto.input.PositionTypeInputDto;
 import ru.isands.test.estore.service.PositionTypeService;
 
-import java.util.Set;
+import java.util.List;
 
 @RestController
 @RequestMapping("/estore/api/position_type")
@@ -21,8 +21,10 @@ public class PositionTypeController {
     }
 
     @GetMapping
-    public ResponseEntity<Set<PositionTypeDto>> getPositionTypes() {
-        return ResponseEntity.ok(positionTypeService.getPositionTypes());
+    public ResponseEntity<List<PositionTypeDto>> getPositionTypes(@RequestParam(name = "page") Integer page,
+                                                                  @RequestParam(name = "pageSize") Integer pageSize)
+    {
+        return ResponseEntity.ok(positionTypeService.getPositionTypes(page, pageSize));
     }
 
     @GetMapping("/{positionTypeId}")

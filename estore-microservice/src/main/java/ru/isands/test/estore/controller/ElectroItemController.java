@@ -9,7 +9,7 @@ import ru.isands.test.estore.model.dto.ElectroItemDto;
 import ru.isands.test.estore.model.dto.input.ElectroItemInputDto;
 import ru.isands.test.estore.service.ElectroItemService;
 
-import java.util.Set;
+import java.util.List;
 
 @RestController
 @Tag(name = "ElectroItem", description = "")
@@ -24,8 +24,10 @@ public class ElectroItemController {
     }
 
     @GetMapping
-    public ResponseEntity<Set<ElectroItemDto>> getElectroItems() {
-        return ResponseEntity.ok(electroItemService.getElectroItems());
+    public ResponseEntity<List<ElectroItemDto>> getElectroItems(@RequestParam(name = "page") Integer page,
+                                                                @RequestParam(name = "pageSize") Integer pageSize)
+    {
+        return ResponseEntity.ok(electroItemService.getElectroItems(page, pageSize));
     }
 
     @GetMapping("/{electroItemId}/groupByShop")

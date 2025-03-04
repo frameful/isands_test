@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class RestExceptionHandler {
 
     @ExceptionHandler
-    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
     public ResponseEntity<ErrorResponse> handleEntityNotFoundException(NotFoundException ex) {
-        return new ResponseEntity<>(new ErrorResponse("Error 404 entity not found: " + ex.getMessage()),
+        return new ResponseEntity<>(new ErrorResponse("Error 406 entity not acceptable: " + ex.getMessage()),
                 HttpStatus.NOT_FOUND);
     }
 

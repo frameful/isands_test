@@ -46,13 +46,15 @@ const tab = ref('employee');
 </script>
 
 <template>
-  <div class="mx-auto flex items-center justify-center py-10 flex-col space-y-4 max-w-[1200px]" :key="componentKey">
+  <div class="mx-auto flex items-center justify-center flex-col space-y-4 py-2" :key="componentKey">
     <div class="flex items-center justify-center space-x-2">
-        <label for="csv">Загрузить данные из csv:</label>
-        <input type="file" id="csv" name="csv" accept=".zip" @change="onFileChanged($event)" />
-        <p v-if="loading">.csv файл загружается...</p>
+        <template v-show="!loading">
+          <label for="csv">Загрузить данные из csv:</label>
+          <input type="file" id="csv" name="csv" accept=".zip" @change="onFileChanged($event)" />
+        </template>
+        <p v-if="loading"> Подождите несколько секунд, .csv файл загружается...</p>
     </div>
-    <Tabs default-value="employee" class="" v-model="tab">
+    <Tabs default-value="employee" class="w-[1200px]" v-model="tab">
       <TabsList class="grid w-full grid-cols-5">
         <TabsTrigger value="employee">
           Сотрудники
@@ -144,7 +146,9 @@ const tab = ref('employee');
             </CardHeader>
             <CardContent class="space-y-2">
                 <TableAuxiliary name="electro_type" />
+                <Separator class="py-1" />
                 <TableAuxiliary name="position_type" />
+                <Separator class="py-1"/>
                 <TableAuxiliary name="purchase_type"/>
             </CardContent>
             <CardFooter></CardFooter>

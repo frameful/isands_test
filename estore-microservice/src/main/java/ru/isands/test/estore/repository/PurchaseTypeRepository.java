@@ -1,14 +1,14 @@
 package ru.isands.test.estore.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import ru.isands.test.estore.model.PurchaseType;
 
 import javax.transaction.Transactional;
 
-public interface PurchaseTypeRepository extends JpaRepository<PurchaseType, Long> {
+public interface PurchaseTypeRepository extends PagingAndSortingRepository<PurchaseType, Long> {
 
     @Modifying
     @Transactional

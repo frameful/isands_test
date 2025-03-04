@@ -1,14 +1,14 @@
 package ru.isands.test.estore.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import ru.isands.test.estore.model.ElectroType;
 
 import javax.transaction.Transactional;
 
-public interface ElectroTypeRepository extends JpaRepository<ElectroType, Long> {
+public interface ElectroTypeRepository extends PagingAndSortingRepository<ElectroType, Long> {
 
     @Modifying
     @Transactional

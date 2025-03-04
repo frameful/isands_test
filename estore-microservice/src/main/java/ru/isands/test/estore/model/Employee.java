@@ -4,7 +4,7 @@ package ru.isands.test.estore.model;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -59,13 +59,13 @@ public class Employee implements Serializable {
 	/**
 	 * Типы электроники
 	 */
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(
 			name = "store_eemployee",
 			joinColumns = @JoinColumn(name = "employee_id"),
 			inverseJoinColumns = @JoinColumn(name = "electro_type_id")
 	)
-	private Set<ElectroType> electroTypeSet;
+	private List<ElectroType> electroTypeList;
 
 
 	@Override

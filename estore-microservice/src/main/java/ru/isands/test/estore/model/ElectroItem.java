@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Getter
 @Setter
@@ -14,7 +14,10 @@ public class ElectroItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "electro_item_counter")
-    @TableGenerator(name = "electro_item_counter", pkColumnName = "name", pkColumnValue = "ru.isands.test.estore.entity.ElectroItem", table = "counter", valueColumnName = "currentid", allocationSize = 1)
+    @TableGenerator(name = "electro_item_counter", pkColumnName = "name",
+            pkColumnValue = "ru.isands.test.estore.entity.ElectroItem",
+            table = "counter", valueColumnName = "currentid",
+            allocationSize = 1)
     @Column(name = "id", unique = true, nullable = false)
     private Long id;
 
@@ -43,5 +46,5 @@ public class ElectroItem {
             joinColumns = @JoinColumn(name = "electro_item_id"),
             inverseJoinColumns = @JoinColumn(name = "shop_id")
     )
-    private Set<Shop> shops;
+    private List<Shop> shops;
 }

@@ -9,7 +9,7 @@ import ru.isands.test.estore.model.dto.PurchaseDto;
 import ru.isands.test.estore.model.dto.input.PurchaseInputDto;
 import ru.isands.test.estore.service.PurchaseService;
 
-import java.util.Set;
+import java.util.List;
 
 @RestController
 @Tag(name = "Purchase", description = "Сервис для выполнения операций над покупками")
@@ -25,12 +25,11 @@ public class PurchaseController {
 
     @Operation(summary = "Получить список всех покупок, отсортированных по дате")
     @GetMapping
-    public ResponseEntity<Set<PurchaseDto>> getPurchases(@RequestParam(value = "sort", required = false) String sort) {
-        if (sort != null && (sort.equals("ASC") || sort.equals("DESC"))) {
-            return ResponseEntity.ok(purchaseService.getPurchasesSortedByDate(sort));
-        } else {
-            return ResponseEntity.ok(purchaseService.getPurchases());
-        }
+    public ResponseEntity<List<PurchaseDto>> getPurchases(@RequestParam(value = "sort", required = false) String sort,
+                                                          @RequestParam(name = "page") Integer page,
+                                                          @RequestParam(name = "pageSize") Integer pageSize)
+    {
+        return ResponseEntity.ok(purchaseService.getPurchases(sort, page, pageSize));
     }
 
     @Operation(summary = "Получить покупку по Id")
@@ -45,5 +44,10 @@ public class PurchaseController {
         return ResponseEntity.ok(purchaseService.addNewPurchase(purchaseInputDto));
     }
 
+    @Operation(summary = "Обновить покупку")
+    @PatchMapping("/{purchaseId}")
+    public ResponseEntity<PurchaseDto> updatePurchase(@PathVariable Long purchaseId, @RequestBody PurchaseInputDto purchaseInputDto) {
+        return ResponseEntity.ok(purchaseService.updatePurchase(purchaseId, purchaseInputDto));
+    }
 
 }

@@ -12,7 +12,7 @@ import ru.isands.test.estore.model.Shop;
 
 import javax.transaction.Transactional;
 import java.util.Optional;
-import java.util.Set;
+import java.util.List;
 
 public interface ElectroShopRepository extends JpaRepository<ElectroShop, ElectroShopPK> {
 
@@ -23,5 +23,7 @@ public interface ElectroShopRepository extends JpaRepository<ElectroShop, Electr
 
     Optional<ElectroShop> findByShopAndElectroItem(Shop shop, ElectroItem electroItem);
 
-    Set<ElectroShop> findByElectroItem(ElectroItem electroItem);
+    List<ElectroShop> findByElectroItem(ElectroItem electroItem);
+
+    Optional<ElectroShop> findByShopIdAndElectroItemId(Long shopId, Long electroItemId);
 }

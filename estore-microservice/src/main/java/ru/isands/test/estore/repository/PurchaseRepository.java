@@ -1,20 +1,19 @@
 package ru.isands.test.estore.repository;
 
-import java.util.Collection;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
-import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
+import ru.isands.test.estore.model.ElectroItem;
 import ru.isands.test.estore.model.Purchase;
 
 import javax.transaction.Transactional;
 
-public interface PurchaseRepository extends JpaRepository<Purchase, Long> {
+public interface PurchaseRepository extends PagingAndSortingRepository<Purchase, Long> {
 
 	@Modifying
 	@Transactional
@@ -28,8 +27,8 @@ public interface PurchaseRepository extends JpaRepository<Purchase, Long> {
 	@Query(value = "UPDATE counter SET currentid = currentid + 1 WHERE name = :counterName", nativeQuery = true)
 	void updateCurrentId(@Param("counterName") String counterName);
 
-	Set<Purchase> findByShop(@Param("shopId") Long shopId);
+	List<Purchase> findByShop(@Param("shopId") Long shopId);
 
 /*	@Query(value = "SELECT * FROM store_purchase ORDER BY purchase_date :sort", nativeQuery = true)
-    Set<Purchase> findAllSortByDate(@Param("sort") String sort);*/
+    List<Purchase> findAllSortByDate(@Param("sort") String sort);*/
 }

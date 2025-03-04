@@ -7,7 +7,7 @@ import ru.isands.test.estore.model.dto.ElectroTypeDto;
 import ru.isands.test.estore.model.dto.input.ElectroTypeInputDto;
 import ru.isands.test.estore.service.ElectroTypeService;
 
-import java.util.Set;
+import java.util.List;
 
 @RestController
 @RequestMapping("/estore/api/electro_type")
@@ -21,8 +21,10 @@ public class ElectroTypeController {
     }
 
     @GetMapping
-    public ResponseEntity<Set<ElectroTypeDto>> getElectroTypes() {
-        return ResponseEntity.ok(electroTypeService.getElectroTypes());
+    public ResponseEntity<List<ElectroTypeDto>> getElectroTypes(@RequestParam(name = "page") Integer page,
+                                                                @RequestParam(name = "pageSize") Integer pageSize)
+    {
+        return ResponseEntity.ok(electroTypeService.getElectroTypes(page, pageSize));
     }
 
     @GetMapping("/{electroTypeId}")

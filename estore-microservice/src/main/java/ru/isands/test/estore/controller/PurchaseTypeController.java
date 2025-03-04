@@ -7,7 +7,7 @@ import ru.isands.test.estore.model.dto.PurchaseTypeDto;
 import ru.isands.test.estore.model.dto.input.PurchaseTypeInputDto;
 import ru.isands.test.estore.service.PurchaseTypeService;
 
-import java.util.Set;
+import java.util.List;
 
 @RestController
 @RequestMapping("/estore/api/purchase_type")
@@ -21,8 +21,10 @@ public class PurchaseTypeController {
     }
 
     @GetMapping
-    public ResponseEntity<Set<PurchaseTypeDto>> getPurchaseTypes() {
-        return ResponseEntity.ok(purchaseTypeService.getPurchaseTypes());
+    public ResponseEntity<List<PurchaseTypeDto>> getPurchaseTypes(@RequestParam(name = "page") Integer page,
+                                                                  @RequestParam(name = "pageSize") Integer pageSize)
+    {
+        return ResponseEntity.ok(purchaseTypeService.getPurchaseTypes(page, pageSize));
     }
 
     @GetMapping("/{purchaseTypeId}")

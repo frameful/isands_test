@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import ru.isands.test.estore.model.PositionType;
 
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -37,7 +37,7 @@ public class EmployeeDto {
     @Schema(description = "Пол сотрудника")
     private boolean gender;
 
-    private Set<ElectroTypeDto> electroTypes;
+    private List<ElectroTypeDto> electroTypes;
 
     @Schema(description = "Магазин, в котором работает сотрудник")
     private ShopOutputDto shop;

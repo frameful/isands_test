@@ -9,7 +9,7 @@ import ru.isands.test.estore.model.dto.ShopDto;
 import ru.isands.test.estore.model.dto.input.ShopInputDto;
 import ru.isands.test.estore.service.ShopService;
 
-import java.util.Set;
+import java.util.List;
 
 @RestController
 @Tag(name = "Shop", description = "Сервис для выполнения операций над магазинами")
@@ -25,8 +25,10 @@ public class ShopController {
 
     @Operation(summary = "Получить список всех магазинов")
     @GetMapping
-    public ResponseEntity<Set<ShopDto>> getShops() {
-        return ResponseEntity.ok(shopService.getShops());
+    public ResponseEntity<List<ShopDto>> getShops(@RequestParam(name = "page") Integer page,
+                                                  @RequestParam(name = "pageSize") Integer pageSize)
+    {
+        return ResponseEntity.ok(shopService.getShops(page, pageSize));
     }
 
     @Operation(summary = "Получить магазин по Id")

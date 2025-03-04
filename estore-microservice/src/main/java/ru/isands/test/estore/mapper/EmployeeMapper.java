@@ -7,9 +7,8 @@ import ru.isands.test.estore.model.dto.input.EmployeeInputDto;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class EmployeeMapper {
@@ -24,7 +23,7 @@ public class EmployeeMapper {
                 .gender(employee.isGender())
                 .lastName(employee.getLastName())
                 .patronymic(employee.getPatronymic())
-                .electroTypes(employee.getElectroTypeSet().stream().map(ElectroTypeMapper::toDto).collect(Collectors.toSet()))
+                .electroTypes(employee.getElectroTypeList().stream().map(ElectroTypeMapper::toDto).collect(Collectors.toList()))
                 .build();
     }
 
@@ -56,7 +55,7 @@ public class EmployeeMapper {
         employee.setPatronymic(employeeInputDto.getPatronymic());
         employee.setFirstName(employeeInputDto.getFirstName());
         employee.setLastName(employeeInputDto.getLastName());
-        employee.setElectroTypeSet(new HashSet<>());
+        employee.setElectroTypeList(new ArrayList<>());
         return employee;
     }
 
