@@ -97,4 +97,17 @@ public class EmployeeService {
         employeeRepository.insertEmployee(employeeId, lastname, firstname, patronymic, birthDate, positionId,
                 shopId, gender);
     }
+
+    public EmployeeDto getBestJuniorConsultantByNumberOfSmartWatchesSold() {
+        return EmployeeMapper.toDto(employeeRepository.findBestJuniorConsultantByNumberOfSmartWatchesSold());
+    }
+
+    public EmployeeDto getBestByTotalPriceOfItemsSold() {
+        return EmployeeMapper.toDto(employeeRepository.findBestByTotalPriceOfItemsSold());
+    }
+
+    public EmployeeDto getBestByNumberOfItemsSold() {
+        return EmployeeMapper.toDto(employeeRepository.findBestByNumberOfItemsSold());
+    }
+
 }

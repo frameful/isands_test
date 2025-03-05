@@ -29,6 +29,4 @@ public interface PurchaseRepository extends PagingAndSortingRepository<Purchase,
 
 	List<Purchase> findByShop(@Param("shopId") Long shopId);
 
-/*	@Query(value = "SELECT * FROM store_purchase ORDER BY purchase_date :sort", nativeQuery = true)
-    List<Purchase> findAllSortByDate(@Param("sort") String sort);*/
 }

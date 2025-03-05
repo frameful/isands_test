@@ -48,4 +48,11 @@ public class ShopController {
     public ResponseEntity<ShopDto> updateShop(@PathVariable Long shopId, @RequestBody ShopInputDto shopInputDto) {
         return ResponseEntity.ok(shopService.updateShop(shopId, shopInputDto));
     }
+
+    @Operation(summary = "Получить сумму денежных средств, полученной магазином через оплату наличными")
+    @GetMapping("/largestTotalSumByCash/{shopId}")
+    public ResponseEntity<Long> getLargestTotalSumByCash(@PathVariable Long shopId) {
+        return ResponseEntity.ok(shopService.getLargestTotalSumByCash(shopId));
+    }
+
 }

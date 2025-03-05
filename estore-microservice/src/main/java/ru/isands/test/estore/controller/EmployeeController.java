@@ -59,4 +59,19 @@ public class EmployeeController {
 		return ResponseEntity.ok(employeeService.deleteEmployee(employeeId));
 	}
 
+	@GetMapping("/bestByTotalPriceOfItemsSold")
+	public ResponseEntity<EmployeeDto> getBestByTotalPriceOfItemsSold() {
+		return ResponseEntity.ok(employeeService.getBestByTotalPriceOfItemsSold());
+	}
+
+	@GetMapping("/bestJuniorConsultantByNumberOfSmartWatchesSold")
+	public ResponseEntity<EmployeeDto> getBestJuniorConsultantByNumberOfSmartWatchesSold() {
+		return ResponseEntity.ok(employeeService.getBestJuniorConsultantByNumberOfSmartWatchesSold());
+	}
+
+	@GetMapping("/bestByNumberOfItemsSold")
+	public ResponseEntity<EmployeeDto> getBestByNumberOfItemsSold() {
+		return ResponseEntity.ok(employeeService.getBestByNumberOfItemsSold());
+	}
+
 }

@@ -62,4 +62,8 @@ public class ShopService {
     void insertShop(Long shopId, String name, String address) {
         shopRepository.insertShop(shopId, name, address);
     };
+
+    public Long getLargestTotalSumByCash(Long shopId) {
+        return shopRepository.findLargestTotalPriceOfItemsSoldByCash(shopId);
+    }
 }
