@@ -1,5 +1,5 @@
 #Build the frontend
-FROM node:18.20.6-alpine3.21 as build-stage
+FROM node:20.9.0 as build-stage
 
 WORKDIR /home/node/app
 
@@ -12,15 +12,15 @@ COPY . .
 RUN yarn build --preset
 
 #Produce the final container
-FROM node:18.20.6-alpine3.21 as final
+FROM node:20.9.0 as final
 
 WORKDIR /app/
 
 COPY --from=build-stage /home/node/app/.output ./
 
-EXPOSE 3000
+EXPOSE 3001
 
-ENV HOST=0.0.0.0
-ENV PORT=3000
+ENV PORT 3001
+ENV HOST 0.0.0.0
 
 CMD ["node", "server/index.mjs"]

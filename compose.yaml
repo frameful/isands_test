@@ -23,3 +23,10 @@ services:
       - "3000:3000"
     image: webapp
     container_name: webapp
+  card_webapp:
+    build:
+      context: ./estore-card
+    ports:
+      - "3001:3001"
+    image: card_webapp
+    container_name: card_webapp
