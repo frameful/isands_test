@@ -33,9 +33,9 @@ public class Purchase implements Serializable {
 	@JoinColumn(name = "employee_id")
 	private Employee employee;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name = "electro_id")
-	private ElectroItem elecroItem;
+	private ElectroItem electroItem;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "type_id")

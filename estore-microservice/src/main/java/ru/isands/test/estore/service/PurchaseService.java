@@ -79,7 +79,7 @@ public class PurchaseService {
         electroItem.setCount(electroItem.getCount() - 1);
         electroShop.setCount(electroShop.getCount() - 1);
 
-        purchase.setElecroItem(electroItem);
+        purchase.setElectroItem(electroItem);
         purchase.setEmployee(employee);
         purchase.setPurchaseType(purchaseType);
         purchase.setShop(shop);
@@ -110,11 +110,11 @@ public class PurchaseService {
 
         Purchase oldPurchase = purchaseRepository.findById(purchaseId)
                 .orElseThrow(() -> new NotFoundException("Покупка не найдена"));
-        ElectroItem oldElectroItem = electroItemRepository.findById(oldPurchase.getElecroItem().getId())
+        ElectroItem oldElectroItem = electroItemRepository.findById(oldPurchase.getElectroItem().getId())
                 .orElseThrow(() -> new NotFoundException("Предыдущий электротовар не найден"));
         Shop oldShop = shopRepository.findById(oldPurchase.getShop().getId())
                 .orElseThrow(() -> new NotFoundException("Предыдущий магазин не найден"));
-        Optional<ElectroShop> oldElectroShop = electroShopRepository.findByShopIdAndElectroItemId(oldShop.getId(), oldPurchase.getElecroItem().getId());
+        Optional<ElectroShop> oldElectroShop = electroShopRepository.findByShopIdAndElectroItemId(oldShop.getId(), oldPurchase.getElectroItem().getId());
 
         if (oldElectroShop.isPresent()) {
             ElectroShop electroShop = oldElectroShop.get();
@@ -142,7 +142,7 @@ public class PurchaseService {
         oldPurchase.setPurchaseType(purchaseType);
         oldPurchase.setEmployee(employee);
         oldPurchase.setShop(shop);
-        oldPurchase.setElecroItem(electroItem);
+        oldPurchase.setElectroItem(electroItem);
 
         return PurchaseMapper.toDto(purchaseRepository.save(oldPurchase));
     }

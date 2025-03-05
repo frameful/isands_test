@@ -11,6 +11,7 @@ import ru.isands.test.estore.mapper.ShopMapper;
 import ru.isands.test.estore.model.ElectroShopPK;
 import ru.isands.test.estore.model.Employee;
 import ru.isands.test.estore.model.Shop;
+import ru.isands.test.estore.model.dto.BestShopDto;
 import ru.isands.test.estore.model.dto.EmployeeDto;
 import ru.isands.test.estore.model.dto.EmployeeOutputDto;
 import ru.isands.test.estore.model.dto.ShopDto;
@@ -63,7 +64,7 @@ public class ShopService {
         shopRepository.insertShop(shopId, name, address);
     };
 
-    public Long getLargestTotalSumByCash(Long shopId) {
-        return shopRepository.findLargestTotalPriceOfItemsSoldByCash(shopId);
+    public BestShopDto getLargestTotalSumByCash() {
+        return shopRepository.findLargestTotalPriceOfItemsSoldByCash();
     }
 }

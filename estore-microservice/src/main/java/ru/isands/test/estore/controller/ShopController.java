@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.isands.test.estore.model.dto.BestShopDto;
 import ru.isands.test.estore.model.dto.ShopDto;
 import ru.isands.test.estore.model.dto.input.ShopInputDto;
 import ru.isands.test.estore.service.ShopService;
@@ -50,9 +51,9 @@ public class ShopController {
     }
 
     @Operation(summary = "Получить сумму денежных средств, полученной магазином через оплату наличными")
-    @GetMapping("/largestTotalSumByCash/{shopId}")
-    public ResponseEntity<Long> getLargestTotalSumByCash(@PathVariable Long shopId) {
-        return ResponseEntity.ok(shopService.getLargestTotalSumByCash(shopId));
+    @GetMapping("/largestTotalSumByCash")
+    public ResponseEntity<BestShopDto> getLargestTotalSumByCash() {
+        return ResponseEntity.ok(shopService.getLargestTotalSumByCash());
     }
 
 }

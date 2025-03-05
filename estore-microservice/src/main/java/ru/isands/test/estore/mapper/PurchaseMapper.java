@@ -9,7 +9,7 @@ public class PurchaseMapper {
         return PurchaseDto.builder()
                 .id(purchase.getId())
                 .employee(EmployeeMapper.toDto(purchase.getEmployee()))
-                .electroItemDto(ElectroItemMapper.toDto(purchase.getElecroItem()))
+                .electroItemDto(ElectroItemMapper.toDto(purchase.getElectroItem()))
                 .shopDto(ShopMapper.toDto(purchase.getShop()))
                 .purchaseType(PurchaseTypeMapper.toDto(purchase.getPurchaseType()))
                 .purchaseDate(purchase.getPurchaseDate())

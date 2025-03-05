@@ -2,6 +2,7 @@ package ru.isands.test.estore.model;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
 import java.util.List;
@@ -12,10 +13,23 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.Hibernate;
+import ru.isands.test.estore.model.dto.BestEmployeeDto;
 
 @Getter
 @Setter
 @Entity
+@SqlResultSetMapping(
+		name = "BestEmployeeMapping",
+		classes = @ConstructorResult(
+				targetClass = BestEmployeeDto.class,
+				columns = {
+						@ColumnResult(name = "id", type = Long.class),
+						@ColumnResult(name = "firstName", type = String.class),
+						@ColumnResult(name = "lastName", type = String.class),
+						@ColumnResult(name = "total_items_sold", type = Double.class)
+				}
+		)
+)
 @Table(name = "store_employee")
 public class Employee implements Serializable {
 
@@ -56,6 +70,10 @@ public class Employee implements Serializable {
 	@Column(name = "gender", nullable = false)
 	boolean gender;
 
+	@OneToMany
+	@JoinColumn(name = "purchase_id")
+	private List<Purchase> purchaseList = new ArrayList<>();
+
 	/**
 	 * Типы электроники
 	 */
@@ -65,7 +83,7 @@ public class Employee implements Serializable {
 			joinColumns = @JoinColumn(name = "employee_id"),
 			inverseJoinColumns = @JoinColumn(name = "electro_type_id")
 	)
-	private List<ElectroType> electroTypeList;
+	private List<ElectroType> electroTypeList = new ArrayList<>();
 
 
 	@Override

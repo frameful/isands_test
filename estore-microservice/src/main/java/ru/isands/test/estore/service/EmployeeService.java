@@ -3,15 +3,13 @@ package ru.isands.test.estore.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import ru.isands.test.estore.exception.NotFoundException;
 import ru.isands.test.estore.mapper.EmployeeMapper;
-import ru.isands.test.estore.model.ElectroEmployeePK;
 import ru.isands.test.estore.model.Employee;
 import ru.isands.test.estore.model.PositionType;
 import ru.isands.test.estore.model.Shop;
-import ru.isands.test.estore.model.dto.ElectroEmployeeDto;
+import ru.isands.test.estore.model.dto.BestEmployeeDto;
 import ru.isands.test.estore.model.dto.EmployeeDto;
 import ru.isands.test.estore.model.dto.input.EmployeeInputDto;
 import ru.isands.test.estore.repository.ElectroEmployeeRepository;
@@ -98,16 +96,16 @@ public class EmployeeService {
                 shopId, gender);
     }
 
-    public EmployeeDto getBestJuniorConsultantByNumberOfSmartWatchesSold() {
-        return EmployeeMapper.toDto(employeeRepository.findBestJuniorConsultantByNumberOfSmartWatchesSold());
+    public BestEmployeeDto getBestJuniorConsultantByNumberOfSmartWatchesSold() {
+        return employeeRepository.findBestJuniorConsultantByNumberOfSmartWatchesSold();
     }
 
-    public EmployeeDto getBestByTotalPriceOfItemsSold() {
-        return EmployeeMapper.toDto(employeeRepository.findBestByTotalPriceOfItemsSold());
+    public BestEmployeeDto getBestByTotalPriceOfItemsSold() {
+        return employeeRepository.findBestByTotalPriceOfItemsSold();
     }
 
-    public EmployeeDto getBestByNumberOfItemsSold() {
-        return EmployeeMapper.toDto(employeeRepository.findBestByNumberOfItemsSold());
+    public BestEmployeeDto getBestByNumberOfItemsSold() {
+        return employeeRepository.findBestByNumberOfItemsSold();
     }
 
 }

@@ -37,7 +37,7 @@ public class PositionTypeController {
         return ResponseEntity.ok(positionTypeService.addPositionType(positionTypeInputDto));
     }
 
-    @PatchMapping("/positionTypeId")
+    @PatchMapping("/{positionTypeId}")
     public ResponseEntity<PositionTypeDto> updatePositionType(@PathVariable Long positionTypeId,
                                                               @RequestBody PositionTypeInputDto positionTypeInputDto) {
         return ResponseEntity.ok(positionTypeService.updatePositionType(positionTypeId, positionTypeInputDto));

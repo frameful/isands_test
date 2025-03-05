@@ -5,10 +5,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import ru.isands.test.estore.model.ElectroEmployeePK;
-import ru.isands.test.estore.model.dto.ElectroEmployeeDto;
+import ru.isands.test.estore.model.dto.BestEmployeeDto;
 import ru.isands.test.estore.model.dto.EmployeeDto;
 import ru.isands.test.estore.model.dto.input.EmployeeInputDto;
 import ru.isands.test.estore.service.EmployeeService;
@@ -60,17 +58,17 @@ public class EmployeeController {
 	}
 
 	@GetMapping("/bestByTotalPriceOfItemsSold")
-	public ResponseEntity<EmployeeDto> getBestByTotalPriceOfItemsSold() {
+	public ResponseEntity<BestEmployeeDto> getBestByTotalPriceOfItemsSold() {
 		return ResponseEntity.ok(employeeService.getBestByTotalPriceOfItemsSold());
 	}
 
 	@GetMapping("/bestJuniorConsultantByNumberOfSmartWatchesSold")
-	public ResponseEntity<EmployeeDto> getBestJuniorConsultantByNumberOfSmartWatchesSold() {
+	public ResponseEntity<BestEmployeeDto> getBestJuniorConsultantByNumberOfSmartWatchesSold() {
 		return ResponseEntity.ok(employeeService.getBestJuniorConsultantByNumberOfSmartWatchesSold());
 	}
 
 	@GetMapping("/bestByNumberOfItemsSold")
-	public ResponseEntity<EmployeeDto> getBestByNumberOfItemsSold() {
+	public ResponseEntity<BestEmployeeDto> getBestByNumberOfItemsSold() {
 		return ResponseEntity.ok(employeeService.getBestByNumberOfItemsSold());
 	}
 
