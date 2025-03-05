@@ -73,7 +73,7 @@ const keyFilterSet = {
   'typeId': {
     regex: new RegExp("[0-9]+"),
     format: 'Число',
-    name: 'Идентификатор типа покупки'
+    name: 'Идентификатор типа оплаты'
   },
 
 }

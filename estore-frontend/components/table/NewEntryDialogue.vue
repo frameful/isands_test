@@ -114,7 +114,7 @@ async function handleClick() {
   } catch (e: any) {
     toast({
       title: "Ошибка",
-      description: e.message,
+      description: e.response.data.message,
     });
   }
 }
