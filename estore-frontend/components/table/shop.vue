@@ -68,14 +68,14 @@ const keyFilterSet = {
                       name="shop" :keySet="keyFilterSet"
                       endpoint="/estore/api/shop" />
   </Dialog>
-  <div>
-    Страница: {{ shopState.page + 1 }}
-
-    <Button @click="shopState.page--" variant="outline" :disabled="shopState.page == 0">Предыдущая страница</Button>
-    -
+  <div class="flex items-center">
+    <Button @click="shopState.page--" variant="outline" :disabled="shopState.page == 0">
+      <Icon icon="radix-icons:double-arrow-left" />
+    </Button>
+    <p class="mx-2">{{ shopState.page + 1 }}</p>
     <Button @click="shopState.page++" variant="outline"
             :disabled="shopState.shops.length !== shopState.pageSize">
-      Следующая страница
+      <Icon icon="radix-icons:double-arrow-left" />
     </Button>
   </div>
   <Table>

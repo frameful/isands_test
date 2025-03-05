@@ -92,12 +92,14 @@ const keyFilterSet = {
   </Dialog>
 
 
-  <div>
-    Страница: {{ purchaseState.page + 1 }}
-
-    <Button @click="purchaseState.page--" variant="outline" :disabled="purchaseState.page == 0">Предыдущая страница</Button>
-    -
-    <Button @click="purchaseState.page++" variant="outline" :disabled="purchaseState.purchases.length !== purchaseState.pageSize">Следующая страница</Button>
+  <div class="flex items-center">
+    <Button @click="purchaseState.page--" variant="outline" :disabled="purchaseState.page == 0">
+      <Icon icon="radix-icons:double-arrow-left" />
+    </Button>
+    <p class="mx-2">{{ purchaseState.page + 1 }}</p>
+    <Button @click="purchaseState.page++" variant="outline" :disabled="purchaseState.purchases.length !== purchaseState.pageSize">
+      <Icon icon="radix-icons:double-arrow-right" />
+    </Button>
   </div>
 
   <Table>
@@ -106,10 +108,10 @@ const keyFilterSet = {
         <TableHead class="w-[100px]">
           id
         </TableHead>
-        <TableHead>employeeId</TableHead>
-        <TableHead>electroItemId</TableHead>
-        <TableHead>shopId</TableHead>
-        <TableHead>purchaseTypeId</TableHead>
+        <TableHead>Имя сотрудника</TableHead>
+        <TableHead>Название товара</TableHead>
+        <TableHead>Адрес магазина</TableHead>
+        <TableHead>Тип оплаты</TableHead>
         <TableHead>
           <Button variant="ghost" @click="handleClick()">
             <p>purchaseDate</p>
@@ -125,10 +127,10 @@ const keyFilterSet = {
         <TableCell class="font-medium">
           {{ purchase.id }}
         </TableCell>
-        <TableCell>{{ purchase.employee.id }}</TableCell>
-        <TableCell>{{ purchase.electroItemDto.id }}</TableCell>
-        <TableCell>{{ purchase.shopDto.id }}</TableCell>
-        <TableCell>{{ purchase.purchaseType.id }}</TableCell>
+        <TableCell>{{ purchase.employee.firstName }}</TableCell>
+        <TableCell>{{ purchase.electroItemDto.name }}</TableCell>
+        <TableCell>{{ purchase.shopDto.address }}</TableCell>
+        <TableCell>{{ purchase.purchaseType.name }}</TableCell>
         <TableCell>{{ purchase.purchaseDate ? purchase.purchaseDate : "NAH AH" }}</TableCell>
         <TableCell>
           <Dialog>

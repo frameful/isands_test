@@ -91,12 +91,14 @@ const keyFilterSet = {
     </DialogTrigger>
     <NewEntryDialogue @newEntry="fetchElectroItems(electroItemState.page)" :keySet="keyFilterSet" name="electro_item" endpoint="/estore/api/electro_item" />
   </Dialog>
-  <div>
-    Страница: {{ electroItemState.page + 1 }}
-
-    <Button @click="electroItemState.page--" variant="outline" :disabled="electroItemState.page == 0">Предыдущая страница</Button>
-    -
-    <Button @click="electroItemState.page++" variant="outline" :disabled="electroItemState.electroItems.length !== electroItemState.pageSize">Следующая страница</Button>
+  <div class="flex items-center">
+    <Button @click="electroItemState.page--" variant="outline" :disabled="electroItemState.page == 0">
+      <Icon icon="radix-icons:double-arrow-left" />
+    </Button>
+    <p class="mx-2">{{ electroItemState.page + 1 }}</p>
+    <Button @click="electroItemState.page++" variant="outline" :disabled="electroItemState.electroItems.length !== electroItemState.pageSize">
+      <Icon icon="radix-icons:double-arrow-right" />
+    </Button>
   </div>
   <Table>
     <TableHeader>

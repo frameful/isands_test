@@ -125,7 +125,7 @@ const { toast } = useToast();
 <template>
   <DialogContent class="sm:max-w-[500px]">
     <DialogHeader>
-      <DialogTitle>Создание {{ props.name }}</DialogTitle>
+      <DialogTitle>{{ props.editing ? "Редактирование" : "Создание" }} {{ props.name }}</DialogTitle>
       <DialogDescription>
         Введите данные в правильном формате.
       </DialogDescription>

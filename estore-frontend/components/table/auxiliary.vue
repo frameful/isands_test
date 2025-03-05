@@ -58,15 +58,20 @@ onMounted(async () => {
         Создать {{ props.name }}
       </Button>
     </DialogTrigger>
-    <NewEntryDialogue @newEntry="fetchTypes(typeState.page)" :keySet="keyFilterSet" :name="props.name" :endpoint="'/estore/api/' + props.name" />
+    <NewEntryDialogue
+        @newEntry="fetchTypes(typeState.page)"
+        :keySet="keyFilterSet" :name="props.name"
+        :endpoint="'/estore/api/' + props.name" />
   </Dialog>
 
-  <div>
-    Страница: {{ typeState.page + 1 }}
-
-    <Button @click="typeState.page--" variant="outline" :disabled="typeState.page == 0">Предыдущая страница</Button>
-    -
-    <Button @click="typeState.page++" variant="outline" :disabled="typeState.types.length !== typeState.pageSize">Следующая страница</Button>
+  <div class="flex items-center">
+    <Button @click="typeState.page--" variant="outline" :disabled="typeState.page == 0">
+      <Icon icon="radix-icons:double-arrow-left" />
+    </Button>
+    <p class="mx-2">{{ typeState.page + 1 }}</p>
+    <Button @click="typeState.page++" variant="outline" :disabled="typeState.types.length !== typeState.pageSize">
+      <Icon icon="radix-icons:double-arrow-right" />
+    </Button>
   </div>
 
   <div>

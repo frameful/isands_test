@@ -94,12 +94,14 @@ const keyFilterSet = {
     <NewEntryDialogue @newEntry="fetchEmployees(employeeState.page)" :keySet="keyFilterSet" name="employee" endpoint="/estore/api/employee" />
   </Dialog>
 
-  <div>
-    Страница: {{ employeeState.page + 1 }}
-
-    <Button @click="employeeState.page--" variant="outline" :disabled="employeeState.page == 0">Предыдущая страница</Button>
-    -
-    <Button @click="employeeState.page++" variant="outline" :disabled="employeeState.employees.length !== employeeState.pageSize">Следующая страница</Button>
+  <div class="flex items-center">
+    <Button @click="employeeState.page--" variant="outline" :disabled="employeeState.page == 0">
+      <Icon icon="radix-icons:double-arrow-left" />
+    </Button>
+    <p class="mx-2">{{ employeeState.page + 1 }}</p>
+    <Button @click="employeeState.page++" variant="outline" :disabled="employeeState.employees.length !== employeeState.pageSize">
+      <Icon icon="radix-icons:double-arrow-right" />
+    </Button>
   </div>
 
   <Table>
